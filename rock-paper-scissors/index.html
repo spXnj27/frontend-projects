@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+            <script src="https://kit.fontawesome.com/3846792d49.js" crossorigin="anonymous"></script>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600&family=Klee+One:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
+             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <meta name="viewport" content="width=device-width">
+                <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+            <title>Rock Paper Scissors Game||Smooth UI/UX</title>
+                <style>
+                                *{
+                                background-color:#FFF;
+                                height:auto;
+                                weight:auto;
+                                margin:0;
+                                padding:0;
+                                font-family: 'Crimson Text', serif;
+                                }
+                                #img1{
+                                height:50vh;
+                                width:100vw;
+                                }
+                                #bt1{
+                                height:10vh;
+                                width:80vw;
+                                outline:none;
+                                background-color:#FFF;
+                                border:0.3vh solid #FF8C00; 
+                                border-radius:20vw;
+                                font-size:3vh;
+                                }
+                                #bt2{
+                                height:10vh;
+                                width:80vw;
+                                outline:none;
+                                background-color:#FFF; 
+                                border:0.3vh solid #FF8C00; 
+                                border-radius:20vw;
+                                font-size:3vh;
+                                }
+                                #bt3{
+                                height:10vh;
+                                width:80vw;
+                                outline:none;
+                                background-color:#FFF; 
+                                border-radius:20vw;
+                                border:0.3vh solid #FFF; 
+                                font-size:2vh;
+                                }
+                                #footer{
+                                position:fixed;
+                                bottom:0vh;
+                                right:0vw;
+                                left:0vw;
+                                background-color:#000; 
+                                color:#FFF; 
+                                }
+                                #secondpage{
+                                display:none;
+                                }
+                                #rock, #paper, #scissor, #compimg, #userimg{
+                                border:1px solid #FF8C00;
+                                height:20vh;
+                                width:30vw;
+                                }
+                                #showimg{
+                                height:30vh;
+                                width:100vw;
+                                }
+                                #scoresection{
+                                font-weight:bolder;
+                                font-size:x-large;                          
+                                }   
+                                #result{                       
+height:15vh;                                
+width:100vw;                                
+display:flex;
+justify-content:center;
+align-items:center; 
+background-color:#66ffff;                 
+}                                        
+                </style>
+</head>
+<body>
+            <div id="firstpage" align="center">
+                                <img src="https://i.ibb.co/h841qmj/440px-Rock-paper-scissors-svg.png" id="img1"/><br/><br/>
+                                <center><button id="bt1"disabled>PLAY WITH FRIENDS</button><br/><br/><button id="bt2">PLAY WITH COMPUTER</button><br/><br/><br/><button id="bt3">See the instructions?</button></center>
+                </div>
+                <div id="secondpage" align="center">
+            <div id="showimage" style="font-size:250%;">
+                        <button id="compimg" style="margin:3vh;padding:2vw;"disabled><i class="far fa-hand-rock fa-7x" style="color:#FF8C00;" id="compimage"></i></button>V/S<button id="userimg" style="margin:3vh;padding:2vw;"><i class="far fa-hand-rock fa-7x" style="color:#FF8C00" id="useimg"></i></button>
+            </div><br><hr color="#000"><br><br>
+            <button id="rock">
+            <i class="far fa-hand-rock fa-7x" style="color:#FF8C00" id="rockicon"></i>
+            </button>
+            <button id="paper">
+            <i class="far fa-hand-paper fa-7x" style="color:#FF8C00" id="papericon"></i>
+            </button>
+            <button id="scissor">
+            <i class="far fa-hand-scissors fa-7x" style="color:#FF8C00" id="scissoricon"></i>
+            </button><br><br><br>
+            <hr color="#000">
+            <div id="scoresection">
+                        <div id="result">Your result will get displayed here.</div>
+                        <center><h1>Score:<div id="score">0</div></h1></center>
+            </div>
+            </div>
+            <center><div id="footer" align="center" style="font-family:'Klee One', cursive;">
+                            Copyright 2021 &copy; I AM SP [Shobhit Pandey]
+                </div></center>
+            <script>
+            window.onload = function(){
+       var firstpage = document.getElementById('firstpage'); 
+       var bt1 = document.getElementById('bt1'); 
+        bt1.onclick = function(){
+        this.style.backgroundColor = "#FF8C00";
+        this.style.color = "#FFF";
+         setTimeout(function(){
+         firstpage.style.display = "none";
+         }, 250);
+        };
+       var bt2 = document.getElementById('bt2'); 
+        bt2.onclick = function(){
+        this.style.backgroundColor = "#FF8C00";
+        this.style.color = "#FFF";
+         setTimeout(function(){
+         firstpage.style.display = "none";
+         }, 250);
+        setTimeout(function(){
+        secondpage.style.display = "block";
+        }, 251);
+        };
+       var bt3 = document.getElementById('bt3'); 
+        bt3.onclick = function(){
+        Swal.fire({ 
+                                 title: 'General Instructions', 
+                                 html: '<ol align="left"><li>1. You can play with the computer as well as with your friends, just click on your choice.<li>2. Than you choose what you wanna choose between rock, paper or scissor. <li>3. Only your luck will decide whether you will lose win or make a tie.</ol>',
+                                 icon:'info',
+                                 showClass: { 
+                                   popup: 'animate__animated animate__fadeInDown' 
+                                   }, 
+                                 hideClass: { 
+                                   popup: 'animate__animated animate__fadeOutUp' 
+                                            } 
+                                })
+        };
+        var secondpage = document.getElementById('secondpage'); 
+        var x = document.getElementById('score'); 
+        var rockbt = document.getElementById('rock'); 
+        var rockicon = document.getElementById('rockicon'); 
+         rockbt.onclick = function (){
+         rockicon.classList.toggle("fas");
+         useimg.classList = "far fa-hand-rock fa-7x";
+         var answer = [
+        'far fa-hand-rock fa-7x', 
+        'far fa-hand-paper fa-7x',
+        'far fa-hand-scissors fa-7x'
+        ];
+        var num = Math.random()*3 | 0;
+        var compimage = document.getElementById('compimage'); 
+        compimage.classList = answer[num];
+        if(compimage.classList == "far fa-hand-rock fa-7x" && useimg.classList == "far fa-hand-rock fa-7x"){
+result.innerHTML = "Its a Draw!";
+result.style.backgroundColor = "#b3b3b3";
+};
+                                            if(compimage.classList == "far fa-hand-scissors fa-7x" && useimg.classList == "far fa-hand-rock fa-7x"){
+result.innerHTML = "You Won!";
+result.style.backgroundColor = "#b3ffb3";
+x.innerHTML = parseInt(x.innerHTML) +1;                     
+};
+
+if(compimage.classList == "far fa-hand-paper fa-7x" && useimg.classList == "far fa-hand-rock fa-7x"){
+result.innerHTML = "You Lose!";
+result.style.backgroundColor = "#ff6666";
+x.innerHTML = parseInt(x.innerHTML) -1;                      
+};
+        setInterval(lite2,1000);
+         };
+        var paperbt = document.getElementById('paper');
+        var papericon = document.getElementById('papericon');
+         paperbt.onclick = function(){
+                   papericon.classList.toggle("fas");                 
+          useimg.classList = "far fa-hand-paper fa-7x";
+          var answer = [
+        'far fa-hand-rock fa-7x', 
+        'far fa-hand-paper fa-7x',
+        'far fa-hand-scissors fa-7x'
+        ];
+        var num = Math.random()*3 | 0;
+        var compimage = document.getElementById('compimage'); 
+        compimage.classList = answer[num];
+        if(compimage.classList == "far fa-hand-paper fa-7x" && useimg.classList == "far fa-hand-paper fa-7x"){
+result.innerHTML = "Its a Draw!";
+result.style.backgroundColor = "#b3b3b3";
+};
+                                            if(compimage.classList == "far fa-hand-rock fa-7x" && useimg.classList == "far fa-hand-paper fa-7x"){
+result.innerHTML = "You Won!";
+result.style.backgroundColor = "#b3ffb3";
+x.innerHTML = parseInt(x.innerHTML) +1;                     
+};
+
+if(compimage.classList == "far fa-hand-scissors fa-7x" && useimg.classList == "far fa-hand-paper fa-7x"){
+result.innerHTML = "You Lose!";
+result.style.backgroundColor = "#ff6666";
+x.innerHTML = parseInt(x.innerHTML) -1;                      
+};
+        setInterval(lite,1000);
+          };
+        var scissorbt = document.getElementById('scissor'); 
+        var scissoricon = document.getElementById('scissoricon'); 
+         scissorbt.onclick = function(){
+         scissoricon.classList.toggle("fas");
+         useimg.classList = "far fa-hand-scissors fa-7x";
+         var answer = [
+        'far fa-hand-rock fa-7x', 
+        'far fa-hand-paper fa-7x',
+        'far fa-hand-scissors fa-7x'
+        ];
+        var num = Math.random()*3 | 0;
+        var compimage = document.getElementById('compimage');       
+        compimage.classList = answer[num];
+        if(compimage.classList == "far fa-hand-scissors fa-7x" && useimg.classList == "far fa-hand-scissors fa-7x"){
+result.innerHTML = "Its a Draw!";
+result.style.backgroundColor = "#b3b3b3";
+};
+                                            if(compimage.classList == "far fa-hand-paper fa-7x" && useimg.classList == "far fa-hand-scissors fa-7x"){
+result.innerHTML = "You Won!";
+result.style.backgroundColor = "#b3ffb3";
+x.innerHTML = parseInt(x.innerHTML) +1;                     
+};
+
+if(compimage.classList == "far fa-hand-rock fa-7x" && useimg.classList == "far fa-hand-scissors fa-7x"){
+result.innerHTML = "You Lose!";
+result.style.backgroundColor = "#ff6666";
+x.innerHTML = parseInt(x.innerHTML) -1;                      
+};
+                              setInterval(lite3,1000); 
+         };
+        var userimg = document.getElementById('userimg'); 
+        var useimg = document.getElementById('useimg'); 
+        var result = document.getElementById('result'); 
+        var owner = "【S】【P】[ɪɴᴀᴄᴛɪᴠᴇ] I AM SP {Shobhit Pandey}";
+        function lite(){
+                   papericon.classList = "far fa-hand-paper fa-7x";
+                   };
+                   function lite2(){
+                   rockicon.classList = "far fa-hand-rock fa-7x";
+                   };
+                   function lite3(){
+                   scissoricon.classList = "far fa-hand-scissors fa-7x";
+                   };
+                   if(x.value>10){
+                   alert("You Won the battle!");
+                   };
+                   if(x.value<-10){
+                               alert("You Lost the battle!");
+                               };
+                   
+        };
+        </script>
+</body>
+</html>
